@@ -2,4 +2,4 @@
 Curs de PHP &amp; Drupal organizat în cadrul Universității București  
 
 
-Link către programa internă: https://goo.gl/nhEtYr
+Link către wiki: http://drupal.eaudeweb.ro/wiki/php-drupal8-unibuc
