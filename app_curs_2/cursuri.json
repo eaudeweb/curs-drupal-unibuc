@@ -1,0 +1,24 @@
+[
+    {
+        "nume": "Ecuatii diferentiale",
+        "descriere": "Descrierea cursului de ecuatii diferentiale.",
+        "profesori": [
+            "John Doe"
+        ]
+    },
+    {
+        "nume": "Structuri de date",
+        "descriere": "Descrierea cursului de structuri de date.",
+        "profesori": [
+            "Jane Doe"
+        ]
+    },
+    {
+        "nume": "PHP si Drupal 8",
+        "descriere": "Descrierea cursului de Drupal 8.",
+        "profesori": [
+            "Alexandru Badiu",
+            "Claudia Ifrim"
+        ]
+    }
+]
