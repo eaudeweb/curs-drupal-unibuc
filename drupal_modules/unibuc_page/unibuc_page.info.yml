@@ -1,0 +1,5 @@
+name: Unibuc Page Example
+description: A simple module that create a custom page at a specific url.
+core: 8.x
+package: Unibuc
+type: module
