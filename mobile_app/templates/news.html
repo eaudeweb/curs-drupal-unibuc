@@ -1,0 +1,9 @@
+<ion-view title="News" id="news">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item ng-repeat="item in news" href="#/drupal/news/{{ item.nid }}">
+              {{ item.title }}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
