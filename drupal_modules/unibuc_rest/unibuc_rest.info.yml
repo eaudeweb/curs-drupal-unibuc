@@ -1,0 +1,5 @@
+name: Unibuc Rest
+description: Exemplifica definirea serviciilor web dintr-un modul.
+core: 8.x
+package: Unibuc
+type: module
