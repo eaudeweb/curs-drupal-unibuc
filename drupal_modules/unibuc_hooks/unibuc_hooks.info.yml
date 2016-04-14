@@ -1,0 +1,5 @@
+name: Unibuc Examples
+description: A simple module.
+core: 8.x
+package: Unibuc
+type: module

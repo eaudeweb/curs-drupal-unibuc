@@ -1,0 +1,80 @@
+<?php
+/**
+ * Exemple de hook-uri in Drupal.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * hook_form_alter() - Modifica formularele afisate pe site.
+ */
+function unibuc_hooks_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    /**
+     * Trebuie verificat id-ul formularului pentru a fi siguri ca modificam doar un anume
+     * formular si nu pe toate.
+     *
+     * In cazul nostru modificam formularul de search.
+     */
+
+    if ($form_id == 'search_block_form') {
+        // Modificam atributele unui element deja existent.
+        $form['keys']['#attributes']['placeholder'] = t('Enter search terms');
+
+        // Adaugam un element nou, un buton de reset.
+        $form['actions']['reset'] = array(
+            '#markup' => '<button class="button form-submit" type="reset">' . t('Reset') . '</button>',
+            '#allowed_tags' => array('button'),
+        );
+    }
+}
+
+/**
+ * hook_block_access() - Permite modificarea accesului la un bloc.
+ */
+function unibuc_hooks_block_access(Block $block, $operation, AccountInterface $account) {
+    /**
+     * Trebuie verificat id-ul blocului pentru a fi siguri ca modificam doar un anume
+     * block si nu pe toate.
+     *
+     * Verificam si ca operatia sa fie cea de vizualizare.
+     *
+     * In cazul nostru modificam blocul generat de modulul exemplu "unibuc".
+     */
+    if ($block->getPluginId() == 'unibuc_links_block' && $operation == 'view') {
+        // Returnam deny random.
+        return AccessResult::forbiddenIf(rand(0, 1));
+    }
+
+    // Pentru alte blocuri nu modificam accesul.
+    return AccessResult::neutral();
+}
+
+/**
+ * hook_user_login() - Ruleaza dupa autentificarea unui utilizator.
+ */
+function unibuc_hooks_user_login($account) {
+    // Afisam un mesaj utilizatorului.
+    drupal_set_message(t('Welcome back %name!', array('%name' => $account->getUsername())));
+}
+
+/**
+ * hook_view_alter() - Permite modificarea continutului unui bloc.
+ */
+function unibuc_hooks_view_alter(array &$build, BlockPluginInterface $block) {
+    /**
+     * Trebuie verificat id-ul blocului pentru a fi siguri ca modificam doar un anume
+     * block si nu pe toate.
+     *
+     * In cazul nostru modificam blocul generat de modulul exemplu "unibuc".
+     */
+    if ($block->getPluginId() == 'unibuc_links_block') {
+        // Adaugam o functie de pre-render care va modifica continutul blocului.
+        $build['#pre_render'][] = '_unibuc_example_block_prerender';
+    }
+}
+
+function _unibuc_hooks_block_prerender(array $build) {
+    // Inlocuim continutul blocului cu un sir de caractere.
+    $build['content']['#markup'] = t('From another module!');
+    return $build;
+}
