@@ -1,5 +1,5 @@
-name: Unibuc Examples
-description: A simple module.
+name: Unibuc Hooks
+description: Modul care exemplifica hook-urile.
 core: 8.x
 package: Unibuc
 type: module
